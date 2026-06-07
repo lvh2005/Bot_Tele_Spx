@@ -1,3 +1,4 @@
+```python
 import os
 import subprocess
 import threading
@@ -33,7 +34,9 @@ if __name__ == "__main__":
         
     print(f"🤖 Da tim thay file code chinh. Dang kich hoat: {bot_file}...")
     try:
-        # Khởi chạy file code chính đã được tự động nhận diện
-        subprocess.run(["python", bot_file], check=True)
+        # Khởi chạy file code chính bằng python3 để đảm bảo tính đồng bộ cao nhất
+        subprocess.run(["python3", bot_file], check=True)
     except Exception as e:
         print(f"❌ Co loi xay ra khi chay file {bot_file}: {e}")
+
+```
