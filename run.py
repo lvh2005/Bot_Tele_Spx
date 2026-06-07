@@ -3,23 +3,37 @@ import subprocess
 import threading
 from flask import Flask
 
+# Khởi tạo Web Server Flask gọn nhẹ để duy trì kết nối với Render
 app = Flask('')
 
 @app.route('/')
 def home():
-    return "Bot SPX Telegram dang hoat dong on dinh 24/7!"
+    return "Bot SPX Telegram dang hoat dong 24/7!"
 
 def run_flask():
+    # Nhận cổng kết nối động từ Render
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
-    print("🌐 Dang khoi dong Web Server phu...")
+    # 1. Khởi động Web Server Flask ở luồng riêng biệt
+    print("🌐 Dang khoi dong Web Server phu de lien ket voi Render...")
     threading.Thread(target=run_flask, daemon=True).start()
     
-    print("🤖 Dang kich hoat file Bot.py...")
+    # 2. Tự động kiểm tra xem file code chính của bạn tên là 'bot.py' hay 'Bot.py'
+    bot_file = "bot.py"
+    if os.path.exists("bot.py"):
+        bot_file = "bot.py"
+    elif os.path.exists("Bot.py"):
+        bot_file = "Bot.py"
+    else:
+        # Nếu không tìm thấy cả hai, liệt kê các file đang có để dễ debug
+        print("❌ Khong tim thay file bot.py hoac Bot.py trong thu muc!")
+        print("Cac file hien tai dang co:", os.listdir("."))
+        
+    print(f"🤖 Da tim thay file code chinh. Dang kich hoat: {bot_file}...")
     try:
-        # Chạy đúng file Bot.py (chữ B viết hoa) như trên GitHub của bạn
-        subprocess.run(["python", "Bot.py"], check=True)
+        # Khởi chạy file code chính đã được tự động nhận diện
+        subprocess.run(["python", bot_file], check=True)
     except Exception as e:
-        print(f"❌ Loi khi chay file Bot.py: {e}")
+        print(f"❌ Co loi xay ra khi chay file {bot_file}: {e}")
