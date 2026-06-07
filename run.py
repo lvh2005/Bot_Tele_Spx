@@ -1,4 +1,3 @@
-```python
 import os
 import subprocess
 import threading
@@ -39,4 +38,3 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"❌ Co loi xay ra khi chay file {bot_file}: {e}")
 
-```
