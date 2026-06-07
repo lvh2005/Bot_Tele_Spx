@@ -7,7 +7,7 @@ import telebot
 from playwright.sync_api import sync_playwright
 
 # ===================== CẤU HÌNH =====================
-TELEGRAM_TOKEN   = "8982926423:AAEGP1OLKfZnyZBhJQErUC6X2ARRpMsCeAk"
+TELEGRAM_TOKEN   = "8982926423:AAE-zPEAKcQD4zX-HhNCQSSOuzLLEfaafl0"
 POLL_INTERVAL    = 5 * 60   # Poll mỗi 5 phút
 MAX_ORDERS       = 10       # Tối đa 10 đơn / người
 STATE_FILE       = "tracking_state.json"
